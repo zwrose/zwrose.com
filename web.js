@@ -14,8 +14,8 @@ poet.init().then(function () {
 });
 
 app.set( 'view engine', 'jade' );
-app.set( 'views', __dirname + '/../views' );
-app.use( express.static( __dirname + '/../public' ));
+app.set( 'views', __dirname + '/views' );
+app.use( express.static( __dirname + '/public' ));
 app.use( app.router );
 
 app.get('/', function(req, res) {
