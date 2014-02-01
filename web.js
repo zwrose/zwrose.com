@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
   res.send('Hello World! Love from zwrose! Cannot wait to have some beautiful content up here!');
 });
 
-app.get( '/blog', function ( req, res ) { res.render( 'index' ) });
+app.get( '/blog', function ( req, res ) { res.render( 'test' ) });
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
