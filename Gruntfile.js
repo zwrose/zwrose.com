@@ -46,6 +46,8 @@ module.exports = function (grunt) {
     // Below, as a demonstration, you'll see the built-in dependencies 
     // linked in the proper order order
 
+    'linker/js/jquery.js',
+
     // Bring in the socket.io client
     'linker/js/socket.io.js',
 
