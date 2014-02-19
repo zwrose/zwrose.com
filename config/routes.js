@@ -34,7 +34,19 @@ module.exports.routes = {
   // (This would also work if you had a file at: `/views/home.ejs`)
   '/': {
     view: 'home/index'
-  }
+  },
+
+  'get /login': 'SessionController.new',
+
+  'post /login': 'SessionController.create',
+
+  'get /logout': 'SessionController.destroy',
+
+  'get /apply': 'UserController.new',
+
+  'post /apply': 'UserController.create'
+
+
 
   /*
   // But what if you want your home page to display
@@ -78,7 +90,7 @@ module.exports.routes = {
 
   // You would want to define the following route to handle your form:
   'post /signup': 'UserController.signup'
-
+  
 
   // What about the ever-popular "vanity URLs" aka URL slugs?
   // (you might remember doing this with `mod_rewrite` in Apache)

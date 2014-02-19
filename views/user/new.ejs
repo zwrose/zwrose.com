@@ -1,0 +1,20 @@
+<form action="/apply" method="POST" class="form-signin">
+	<h2 class="form-signin-heading">Apply for an account</h2>
+
+	<% if(flash && flash.err) { %>
+		<ul class="alert alert-danger">
+	<% Object.keys(flash.err).forEach(function(error) { %>
+		<li><%- JSON.stringify(flash.err[error]) %></li>
+	<% }) %>
+	</ul>
+	<% } %>
+	
+	<input type="text" class="form-control" placeholder="username" name="username">
+
+	<input type="password" class="form-control" placeholder="password" name="password" id="password">
+
+	<br />
+
+	<input type="submit" class="btn btn-lg btn-primary btn-block" value="Apply"/>
+	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>

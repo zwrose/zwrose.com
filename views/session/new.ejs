@@ -1,0 +1,17 @@
+<form action="/login" method="POST" class="form-signin">
+	<h2 class="form-signin-heading">Please log in...</h2>
+
+	<% if(flash && flash.err) { %>
+		<ul class="alert alert-danger">
+	<% Object.keys(flash.err).forEach(function(error) { %>
+		<li><%- JSON.stringify(flash.err[error]) %></li>
+	<% }) %>
+	</ul>
+	<% } %>
+
+	<input type="text" class="form-control" placeholder="Username" name="username">
+	<input type="password" class="form-control" placeholder="Password" name="password">
+	<input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In"/>
+	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+
+</form>
