@@ -17,6 +17,10 @@
 
 module.exports = {
     
+  new: function(req, res){
+		res.view();
+	},
+
   admin: function(req, res){
   	res.view();
   },
