@@ -1,3 +1,20 @@
 <div class="container">
-  <h1>Blog Article Listing</h1>
+	<div class="row">
+  	<h1>Blog Article Listing</h1>
+  	<hr>
+  </div>
+  <% _.each(posts, function(post) { %>
+  	<% if(post.published){ %>
+	  	<div class="row">
+	  		<h4><%= post.title %></h4>
+	  	</div>
+	  	<div class="row">
+	  		<h6>By: <%= post.author %>, Published on <%= post.pubDate %></h6>
+	  	</div>
+	  	<div class="row">
+	  		<div><%= post.articleBody %></div>
+	  	</div>
+	  	<hr>
+	  <% } %>
+  <% }) %>
 </div>
