@@ -32,7 +32,7 @@ module.exports = {
   		defaultsTo: false
   	},
 
-  	body: {
+  	articleBody: {
   		type: 'text'
   	}
     

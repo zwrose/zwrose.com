@@ -26,7 +26,32 @@ module.exports = {
   },
 
   index: function(req, res){
-  	res.view();
+
+  	Blog.find().sort('pubDate DESC').done(function(err, posts){
+  		if(err) return next(err);
+			res.view({
+				posts: posts
+			});
+  	});
+  	
+  },
+
+  create: function(req, res, next){
+
+  	Blog.create(req.params.all(), function postCreated(err, post){
+
+  		if(err){
+  			req.session.flash = {
+  				err: err
+  			}
+
+  			return res.redirect('/blog');
+  		}
+
+  		res.redirect('/blog');
+
+  	});
+
   }
 
 

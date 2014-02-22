@@ -18,7 +18,8 @@ module.exports.policies = {
   // (`true` allows public access) 
   '*': 'flash',
   blog: {
-  	'admin': 'isAuthenticated'
+  	'admin': 'isAuthenticated',
+  	'new': 'isAuthenticated'
   }
 
   /*
