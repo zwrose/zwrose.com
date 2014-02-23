@@ -1,0 +1,24 @@
+<div class="container">
+  <form class="form" action="/blog/update/<%= article.id %>" method="POST">
+    <div class="form-group col-md-6">
+      <label for="articleTitle">Article Title</label>
+      <input type="text" class="form-control" id="articleTitle" name="title" value="<%= article.title %>">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="author">Article Author</label>
+      <input type="text" class="form-control" id="author" name="author" value="<%= article.author %>">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="pubDate">Article Date</label>
+      <input type="date" class="form-control" id="pubDate" name="pubDate" value="<%= article.pubDate %>">
+    </div>
+    <div class="form-group col-md-12">
+      <label for="body">Article Text</label>
+      <textarea class="form-control" rows="10" id="body" name="articleBody"><%= article.articleBody %></textarea>
+    </div>
+    <div class="form-group col-md-12">
+      <button type="submit" class="btn btn-default">Save</button>
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </div>
+  </form>
+</div>

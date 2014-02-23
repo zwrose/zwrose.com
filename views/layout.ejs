@@ -62,7 +62,22 @@
 
     <%- body %>
 
-
+    <div class="container">
+      <hr class="footer-break">
+      <% if(!req.session.User || !req.session.User.privileged){ %>
+        <footer class="footer text-center">
+          <div>
+            <a href="https://github.com/zwrose/zwrose.com">Source</a> | <a href="/login">Login</a>
+          </div>
+        </footer>
+      <% }else if(req.session.User && req.session.User.privileged){ %>
+        <footer class="footer text-center">
+          <div>
+            <a href="/blog/admin">Blog Admin</a> | <a href="https://github.com/zwrose/zwrose.com">Source</a> | <a href="/blog/admin">Logout</a>
+          </div>
+        </footer>
+      <% } %>
+    </div>
 
     <!--
         Client-side Templates
@@ -111,7 +126,9 @@
           + Use a different preprocessor, like TypeScript
 
     -->
-
+    <!-- Custom Scripts -->
+    <script src="/ckeditor/ckeditor.js"></script>
+    <!-- Custom Scripts End -->
     <!--SCRIPTS-->
     <script src="/linker/js/jquery.js"></script>
     <script src="/linker/js/socket.io.js"></script>
@@ -121,5 +138,6 @@
     <script src="/linker/js/custom.js"></script>
     <script src="/linker/js/underscore.js"></script>
     <!--SCRIPTS END-->
+    
   </body>
 </html>

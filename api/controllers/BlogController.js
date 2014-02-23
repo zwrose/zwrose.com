@@ -21,16 +21,23 @@ module.exports = {
 		res.view();
 	},
 
-  admin: function(req, res){
-  	res.view();
-  },
+  admin: function(req, res, next){
 
-  index: function(req, res){
-
-  	Blog.find().sort('pubDate DESC').done(function(err, posts){
+  	Blog.find().sort('pubDate DESC').done(function(err, articles){
   		if(err) return next(err);
 			res.view({
-				posts: posts
+				articles: articles
+			});
+  	});
+
+  },
+
+  index: function(req, res, next){
+
+  	Blog.find().sort('pubDate DESC').done(function(err, articles){
+  		if(err) return next(err);
+			res.view({
+				articles: articles
 			});
   	});
   	
@@ -38,7 +45,7 @@ module.exports = {
 
   create: function(req, res, next){
 
-  	Blog.create(req.params.all(), function postCreated(err, post){
+  	Blog.create(req.params.all(), function articleCreated(err, article){
 
   		if(err){
   			req.session.flash = {
@@ -52,9 +59,42 @@ module.exports = {
 
   	});
 
+  },
+
+  edit: function(req, res, next){
+
+    Blog.findOne(req.param('id'),function foundArticle(err, article){
+      if(err) return next(err);
+      if(!article) return next('User doesn\'t exist.');
+
+      res.view({
+        article: article
+      });
+    });
+  },
+
+  update: function(req, res, next){
+
+    Blog.update(req.param('id'), req.params.all(), function articleUpdated(err){
+      if(err){
+        return res.redirect('/blog/edit/'+req.param('id'));
+      }
+
+      res.redirect('/blog/show/'+req.param('id'));
+    });
+  },
+
+  show: function(req, res, next){
+    Blog.findOne(req.param('id'), function foundArticle(err, article){
+      
+      if(err) return next(err);
+      if(!article) return next();
+      
+      res.view({
+        article: article
+      });
+    });
   }
-
-
 
 
   

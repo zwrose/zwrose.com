@@ -1,20 +1,22 @@
 <div class="container">
-	<div class="row">
-  	<h1>Blog Article Listing</h1>
-  	<hr>
-  </div>
-  <% _.each(posts, function(post) { %>
-  	<% if(post.published){ %>
-	  	<div class="row">
-	  		<h4><%= post.title %></h4>
+<!-- 	<div class="row">
+  	<h2>Blog Article Listing</h2>
+  	<hr class="title-break">
+  </div> -->
+  <% _.each(articles, function(article) { %>
+  	<% if(article.published){ %>
+	  	<div class="">
+	  		<h3 class="article-byline"><a class="article-title" href="/blog/show/<%= article.id %>"><%= article.title %></a></h3>
 	  	</div>
-	  	<div class="row">
-	  		<h6>By: <%= post.author %>, Published on <%= post.pubDate %></h6>
+	  	<div class="">
+	  		<h5 class="article-byline">By: <%= article.author %>, Published on <%= article.pubDate %></h5>
 	  	</div>
-	  	<div class="row">
-	  		<div><%= post.articleBody %></div>
+	  	<div class="">
+	  		<div><%- article.articleBody %></div>
 	  	</div>
-	  	<hr>
+	  	<% if(articles.indexOf(article) !== (articles.length - 1)){ %>
+	  		<hr class="article-break">
+	  	<% } %>
 	  <% } %>
   <% }) %>
 </div>
