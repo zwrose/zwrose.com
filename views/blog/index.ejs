@@ -1,20 +1,22 @@
 <div class="container">
-	<div class="row">
+<!-- 	<div class="row">
   	<h2>Blog Article Listing</h2>
   	<hr class="title-break">
-  </div>
+  </div> -->
   <% _.each(articles, function(article) { %>
   	<% if(article.published){ %>
-	  	<div class="row">
+	  	<div class="">
 	  		<h3 class="article-byline"><a class="article-title" href="/blog/show/<%= article.id %>"><%= article.title %></a></h3>
 	  	</div>
-	  	<div class="row">
+	  	<div class="">
 	  		<h5 class="article-byline">By: <%= article.author %>, Published on <%= article.pubDate %></h5>
 	  	</div>
-	  	<div class="row">
+	  	<div class="">
 	  		<div><%- article.articleBody %></div>
 	  	</div>
-	  	<hr class="article-break">
+	  	<% if(articles.indexOf(article) !== (articles.length - 1)){ %>
+	  		<hr class="article-break">
+	  	<% } %>
 	  <% } %>
   <% }) %>
 </div>
