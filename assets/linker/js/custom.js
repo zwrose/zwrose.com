@@ -8,3 +8,5 @@
 //     //e.preventDefault(); //this keeps from going to link
 //   });
 // });
+// ckeditor on new blogs
+CKEDITOR.replace( 'body' );

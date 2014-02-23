@@ -22,15 +22,22 @@ module.exports = {
 	},
 
   admin: function(req, res){
-  	res.view();
+  	
+  	Blog.find().sort('pubDate DESC').done(function(err, articles){
+  		if(err) return next(err);
+			res.view({
+				articles: articles
+			});
+  	});
+  	
   },
 
   index: function(req, res){
 
-  	Blog.find().sort('pubDate DESC').done(function(err, posts){
+  	Blog.find().sort('pubDate DESC').done(function(err, articles){
   		if(err) return next(err);
 			res.view({
-				posts: posts
+				articles: articles
 			});
   	});
   	
@@ -38,7 +45,7 @@ module.exports = {
 
   create: function(req, res, next){
 
-  	Blog.create(req.params.all(), function postCreated(err, post){
+  	Blog.create(req.params.all(), function postCreated(err, article){
 
   		if(err){
   			req.session.flash = {
@@ -52,7 +59,19 @@ module.exports = {
 
   	});
 
-  }
+  },
+
+  edit: function(req, res, next){
+
+    Blog.findOne(req.param('id'),function foundUser(err, article){
+      if(err) return next(err);
+      if(!article) return next('User doesn\'t exist.');
+
+      res.view({
+        article: article
+      });
+    });
+  },
 
 
 

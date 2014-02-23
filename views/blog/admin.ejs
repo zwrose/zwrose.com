@@ -1,3 +1,32 @@
 <div class="container">
-  <h1>Blog Administration</h1>
+	<h3>Blog Administration</h3>
+	<table class='table'>
+		<tr>
+			<th>Article Title</th>
+			<th>Author</th>
+			<th>Date</th>
+			<th>Published</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		
+
+		<% _.each(articles, function(article) { %>
+		<tr data-id="<%= article.id %>" data-model="blog">
+			<td><%= article.title %></td>
+			<td><%= article.author %></td>
+			<td><%= article.pubDate %></td>
+			<td>y/n</td>
+			<td><a href="/blog/show/<%= article.id %>" class="btn btn-sm btn-primary">Show</a></td>
+			<td><a href="/blog/edit/<%= article.id %>" class="btn btn-sm btn-warning">Edit</a></td>
+			<td><form action="/blog/destroy/<%= article.id %>" method="POST">
+				<input type="hidden" name="_method" value="delete"/>
+				<input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
+				<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+			</form></td>
+		</tr> 
+
+		<% }) %>
+	</table>
 </div>
